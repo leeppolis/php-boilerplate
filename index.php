@@ -70,7 +70,7 @@
 		}
 	}
 	
-	if ( M_DB_HOST !== '' && M_DB_CATALOG !== '') {
+	if ( M_DB_HOST !== '' && M_DB_CATALOG !== '' ) {
 		try {
 			$DBH = new PDO("mysql:dbname=" . M_DB_CATALOG . ";charset=UTF8;host=" . M_DB_HOST, M_DB_USER, M_DB_PASSWORD);
 		} catch (PDOException $e) {
