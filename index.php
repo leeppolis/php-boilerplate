@@ -70,13 +70,14 @@
 		}
 	}
 	
-	try {
-		$DBH = new PDO("mysql:dbname=" . M_DB_CATALOG . ";charset=UTF8;host=" . M_DB_HOST, M_DB_USER, M_DB_PASSWORD);
-	} catch (PDOException $e) {
-		$page = "505.php";
-		$output->error = "unable to connect to the DB: " . $e->getMessage();
+	if ( M_DB_HOST !== '' && M_DB_CATALOG !== '') {
+		try {
+			$DBH = new PDO("mysql:dbname=" . M_DB_CATALOG . ";charset=UTF8;host=" . M_DB_HOST, M_DB_USER, M_DB_PASSWORD);
+		} catch (PDOException $e) {
+			$page = "505.php";
+			$output->error = "unable to connect to the DB: " . $e->getMessage();
+		}
 	}
-
 	include( M_SOURCES .'/' . $page );
 	die();
 ?>	
