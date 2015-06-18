@@ -1,6 +1,15 @@
 # BOILERPLATE
 This is a PHP boilerplate for quick bootstrapping PHP applications.
 
+## Contact
+For any info or question please feel free to contact me:
+
+- http://simonelippolis.com/
+- http://twitter.com/simonelippolis
+
+Or use the wonderful Github tools.
+I really would love to know if you tried this code, and what your opinion about it is.
+
 ## How it works
 The ./.htaccess file redirects every request to the main index.html.
 It then includes all the required files and classes, checks the required url against the user-defined routes, and includes the defined file.
@@ -21,24 +30,25 @@ chmod 777 ./uploads and ./core/cache if needed.
 
 ## Routes
 The $routes array contains the definition of valid routes for your application. The match is
-
->> array( _Regex_ route => _String_ source_file )
-
+```
+array( _Regex_ route => _String_ source_file )
+```
 The routes already defined are just examples. Since the keys of the array are Regex patterns, you'll be able to define very complex routes with variables.
 
 ### Example
-
->> '/post\/[0-9]+\/[a-zA-Z0-9_\-]+(\/)?/' => 'posts/post.php'
-
+```
+'/post\/[0-9]+\/[a-zA-Z0-9_\-]+(\/)?/' => 'posts/post.php'
+```
 will include ./core/sources/posts/post.php for any of the following requests:
 
->> /post/1/my-first-post
->> /post/2/my-second-post/
-
+```
+/post/1/my-first-post
+/post/2/my-second-post/
+```
 Querystrings are removed from the URL before any regex comparison is performed, this means that if the user asks something like
-
->> /post/1/my-first-post?from=Facebook_Campaign
-
+```
+/post/1/my-first-post?from=Facebook_Campaign
+```
 the regex match will succeed, and the "from" variable will be accessible from the $_GET array.
 
 
@@ -51,7 +61,7 @@ Within ./core/libraries create a folder with the name of your library. Within th
 
 ### Example
 You want to add Smarty as a library for your project, this is the folder structure:
-
+```
 - /
 - [D] core
 -- [D] cache
@@ -66,13 +76,13 @@ You want to add Smarty as a library for your project, this is the folder structu
 - .htaccess
 - index.php
 - settings.php
-
+```
 ## Adding custom classes
 Add to ./core/classes any custom class you wrote for your application. Create a folder for any new class, any *.class.php within it will be automatically included by index.php
 
 ### Example
 You wrote a class to manage Users, this is the folder structure:
-
+```
 - /
 - [D] core
 -- [D] cache
@@ -86,7 +96,7 @@ You wrote a class to manage Users, this is the folder structure:
 - .htaccess
 - index.php
 - settings.php
-
+```
 ## License
 
 The MIT License (MIT)
