@@ -69,9 +69,8 @@ You want to add Smarty as a library for your project, this is the folder structu
 -- [D] libraries
 --- [D] Smarty
 ---- (...) various smarty file and folders
----- **Smarty.lib.php** (this file will be automatically included)
+---- Smarty.lib.php (<-- this file will be automatically included)
 -- [D] sources
-- [D] themes
 - [D] uploads
 - .htaccess
 - index.php
@@ -88,10 +87,9 @@ You wrote a class to manage Users, this is the folder structure:
 -- [D] cache
 -- [D] classes
 --- [D] Users
----- **Users.class.php** (this file will be automatically included)
+---- Users.class.php (<-- this file will be automatically included)
 -- [D] libraries
 -- [D] sources
-- [D] themes
 - [D] uploads
 - .htaccess
 - index.php
