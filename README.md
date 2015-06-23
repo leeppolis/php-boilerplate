@@ -121,5 +121,8 @@ SOFTWARE.
 
 ## Change Log
 
+### Jun 2015
+Minor bug fixings and documentation changes.
+
 ### Jun, 2015
 First commit.
