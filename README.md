@@ -126,4 +126,7 @@ Added check if required folders are existent or not, in order to avoid triggerin
 Added /.htaccess to the repo.
 
 ### Jun, 2015
+Minor bug fixings and documentation changes.
+
+### Jun, 2015
 First commit.
