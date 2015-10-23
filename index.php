@@ -17,32 +17,36 @@
 		
 		// Setup //
 		// Include external Libraries //
-		if ( $handle = opendir( M_LIBRARIES ) ):
-			while ( false !== ( $entry = readdir($handle) ) ):
-				if ( $entry != "." && $entry != ".." && ( is_dir( M_LIBRARIES . '/' . $entry ) ) ):
-					if ( $handle2 = opendir( M_LIBRARIES . '/' . $entry ) ):
-						while ( false !== ( $entry2 = readdir( $handle2 ) ) ):
-							if ($entry2 != "." && $entry2 != ".." && (strstr($entry2, '.lib.php') !== false)):
-								require_once( M_LIBRARIES . '/' . $entry . '/' . $entry2 );
-							endif;
-						endwhile;
+		if (file_exists( M_LIBRARIES ) ):
+			if ( $handle = opendir( M_LIBRARIES ) ):
+				while ( false !== ( $entry = readdir($handle) ) ):
+					if ( $entry != "." && $entry != ".." && ( is_dir( M_LIBRARIES . '/' . $entry ) ) ):
+						if ( $handle2 = opendir( M_LIBRARIES . '/' . $entry ) ):
+							while ( false !== ( $entry2 = readdir( $handle2 ) ) ):
+								if ($entry2 != "." && $entry2 != ".." && (strstr($entry2, '.lib.php') !== false)):
+									require_once( M_LIBRARIES . '/' . $entry . '/' . $entry2 );
+								endif;
+							endwhile;
+						endif;
 					endif;
-				endif;
-			endwhile;
+				endwhile;
+			endif;
 		endif;
 		// Include Classes //
-		if ( $handle = opendir( M_CLASSES ) ):
-			while ( false !== ( $entry = readdir($handle) ) ):
-				if ( $entry != "." && $entry != ".." && ( is_dir( M_CLASSES . '/' . $entry ) ) ):
-					if ( $handle2 = opendir( M_CLASSES . '/' . $entry ) ):
-						while ( false !== ( $entry2 = readdir( $handle2 ) ) ):
-							if ($entry2 != "." && $entry2 != ".." && (strstr($entry2, '.class.php') !== false)):
-								require_once( M_CLASSES . '/' . $entry . '/' . $entry2 );
-							endif;
-						endwhile;
+		if (file_exists( M_CLASSES ) ):
+			if ( $handle = opendir( M_CLASSES ) ):
+				while ( false !== ( $entry = readdir($handle) ) ):
+					if ( $entry != "." && $entry != ".." && ( is_dir( M_CLASSES . '/' . $entry ) ) ):
+						if ( $handle2 = opendir( M_CLASSES . '/' . $entry ) ):
+							while ( false !== ( $entry2 = readdir( $handle2 ) ) ):
+								if ($entry2 != "." && $entry2 != ".." && (strstr($entry2, '.class.php') !== false)):
+									require_once( M_CLASSES . '/' . $entry . '/' . $entry2 );
+								endif;
+							endwhile;
+						endif;
 					endif;
-				endif;
-			endwhile;
+				endwhile;
+			endif;
 		endif;
 		
 		// Routing //
@@ -60,7 +64,7 @@
 			}
 		}
 			
-		if ($page != '404.php' && $page != '505.php') {
+		if ($page != '404.php' && $page != '505.php' && file_exists( M_SOURCES )) {
 			if ( !file_exists( M_SOURCES .'/' . $page ) ) {
 				$page = '404.php';
 				$output->error = "Source file not found (" . M_SOURCES . '/' . $page . ")";
