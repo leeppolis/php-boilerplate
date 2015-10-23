@@ -121,5 +121,9 @@ SOFTWARE.
 
 ## Change Log
 
+### Oct, 2015
+Added check if required folders are existent or not, in order to avoid triggering errors.
+Added /.htaccess to the repo.
+
 ### Jun, 2015
 First commit.
