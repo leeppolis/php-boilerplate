@@ -48,6 +48,8 @@
 				endwhile;
 			endif;
 		endif;
+		// Include and Init modules aded via Composer
+		if (file_exists(M_COMPOSER)) require_once( M_COMPOSER );
 		
 		// Routing //
 		$page = '404.php';	

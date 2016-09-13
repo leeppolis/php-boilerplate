@@ -57,25 +57,32 @@ Your application's source file must be stored in the ./core/sources directory or
 The index.php file will match the requested URL with the routes defined in the settings file, and will look for the corresponding file
 
 ## Adding external libraries (i.e. Smarty)
-Within ./core/libraries create a folder with the name of your library. Within this folder upload all the required files and folder. The index.php will automatically include any *.lib.php file found in the first child folder of ./core/libraries.
+You can now use [Composer](https://getcomposer.org). Be sure to set Composer to save required classes and module to the `/vendor folder`. Should you need to put it in a different location, be sure to change the M_COMPOSER constant in settings.php
 
-### Example
-You want to add Smarty as a library for your project, this is the folder structure:
-```
-- /
-- [D] core
--- [D] cache
--- [D] classes
--- [D] libraries
---- [D] Smarty
----- (...) various smarty file and folders
----- Smarty.lib.php (<-- this file will be automatically included)
--- [D] sources
-- [D] uploads
-- .htaccess
-- index.php
-- settings.php
-```
+_While this upgrade is backward-compatible, my advice is to start using composer when you import third-party libraries, and keep your `./core/libraries` folder clean._
+
+The following method to add third-party libraries is deprecated and must be used only for libraries not available on Composer.
+
+>> Within `./core/libraries` create a folder with the name of your library. Within this folder upload all the required files and folder. The `index.php` will automatically include any `*.lib.php` file found in the first child folder of `./core/libraries`.
+>> 
+>> ### Example
+>> You want to add Smarty as a library for your project, this is the folder structure:
+>> ```
+>> - /
+>> - [D] core
+>> -- [D] cache
+>> -- [D] classes
+>> -- [D] libraries
+>> --- [D] Smarty
+>> ---- (...) various smarty file and folders
+>> ---- Smarty.lib.php (<-- this file will be automatically included)
+>> -- [D] sources
+>> - [D] uploads
+>> - .htaccess
+>> - index.php
+>> - settings.php
+>> ```
+
 ## Adding custom classes
 Add to ./core/classes any custom class you wrote for your application. Create a folder for any new class, any *.class.php within it will be automatically included by index.php
 
@@ -120,6 +127,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ## Change Log
+
+### Sept, 2016
+Added support for Composer.
 
 ### Oct, 2015
 Added check if required folders are existent or not, in order to avoid triggering errors.

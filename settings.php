@@ -15,6 +15,7 @@
 	define( 'M_CACHE', M_BASE_PATH . '/core/cache' );
 	define( 'M_CLASSES', M_BASE_PATH . '/core/classes' );
 	define( 'M_UPLOADS', M_BASE_PATH . '/uploads' );
+	define( 'M_COMPOSER', M_BASE_PATH . '/vendor/autoload.php' );
 	
 	// Define URLs and site options //
 	define( 'M_BASE_URL', '' );
