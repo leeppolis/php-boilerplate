@@ -35,4 +35,3 @@
 		'/page\/[a-zA-Z0-9_\-]+\/[0-9]+(\/)?$/' => 'pages/page.php', // "/page/PAGE_NAME/PAGE_ID",
 		'/login(\/)?/' => 'admin/login.php' // "/login"
 	);
-?>
