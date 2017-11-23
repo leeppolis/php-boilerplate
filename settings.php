@@ -2,6 +2,11 @@
 	// Default timezone //
 	date_default_timezone_set('Europe/Rome');
 	
+	// DNC Do not change, initializes the M_CLI constant to true if the script
+	// is being run via command line.
+	define( 'M_CLI', (PHP_SAPI == 'cli') ? true : false );
+	// End DNC
+	
 	// Define DB Connection params - MySql only at the moment //
 	define( 'M_DB_HOST', '' );
 	define( 'M_DB_CATALOG', '' );

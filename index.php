@@ -2,7 +2,6 @@
 	$show_error = 0;
 	if ( file_exists("./.debug") ) $show_error = E_ALL;
 	error_reporting( $show_error );
- 	session_start();
 	
 	$settings = './settings.php';
 	$page = '505.php';
@@ -11,11 +10,8 @@
 	$output->error = "missing config file";
 	
 	if ( file_exists( $settings ) ) {
-		
 		require_once( $settings );
-		
-		// TODO //
-		// Check that all the required folders have been defined, and that they're existing and writable (if needed) //
+		if ( !M_CLI ) session_start([ "cookie_domain" => M_DOMAIN ]);
 		
 		// Setup //
 		// Include external Libraries //
@@ -34,6 +30,7 @@
 				endwhile;
 			endif;
 		endif;
+		
 		// Include Classes //
 		if (file_exists( M_CLASSES ) ):
 			if ( $handle = opendir( M_CLASSES ) ):
@@ -50,21 +47,26 @@
 				endwhile;
 			endif;
 		endif;
+		
 		// Include and Init modules aded via Composer
 		if (file_exists(M_COMPOSER)) require_once( M_COMPOSER );
 		
-		// Routing //
-		$page = '404.php';	
-		$output->error = "Invalid route.";	
-		$parts = null;
-		$self = substr( $_SERVER['REQUEST_URI'] , 1 , strlen ( $_SERVER['REQUEST_URI'] ) );
-		$format = (isset($_REQUEST['format'])) ? $_REQUEST['format'] : 'html';	
-		$request_uri = explode('?', $self);
-		
-		foreach( $routes as $key => $value ) {
-			if ( preg_match( $key , $request_uri[0] ) ) {
-				$page = $value;
-				break;
+		if ( M_CLI ) {
+			$page = $argv[1] . ".php";
+		} else {
+			// Routing //
+			$page = '404.php';	
+			$output->error = "Invalid route.";	
+			$parts = null;
+			$self = substr( $_SERVER['REQUEST_URI'] , 1 , strlen ( $_SERVER['REQUEST_URI'] ) );
+			$format = (isset($_REQUEST['format'])) ? $_REQUEST['format'] : 'html';	
+			$request_uri = explode('?', $self);
+			
+			foreach( $routes as $key => $value ) {
+				if ( preg_match( $key , $request_uri[0] ) ) {
+					$page = $value;
+					break;
+				}
 			}
 		}
 			
@@ -80,10 +82,12 @@
 	
 	if ( M_DB_HOST !== '' && M_DB_CATALOG !== '' ) {
 		try {
-			$DBH = new PDO("mysql:dbname=" . M_DB_CATALOG . ";charset=UTF8;host=" . M_DB_HOST, M_DB_USER, M_DB_PASSWORD);
+	    	$DBH = new PDO("mysql:dbname=" . M_DB_CATALOG . ";charset=UTF8;host=" . M_DB_HOST, M_DB_USER, M_DB_PASSWORD);
+	    	$DBH->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	    	$DBH->exec("set names utf8");
 		} catch (PDOException $e) {
-			$page = "505.php";
-			$output->error = "unable to connect to the DB: " . $e->getMessage();
+	    	$page = "505.php";
+	    	$output->error = "unable to connect to the DB: " . $e->getMessage();
 		}
 	}
 	include( M_SOURCES .'/' . $page );

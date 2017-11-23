@@ -51,6 +51,13 @@ Querystrings are removed from the URL before any regex comparison is performed, 
 ```
 the regex match will succeed, and the "from" variable will be accessible from the $_GET array.
 
+## Running from command line
+Certain functionalities (i.e. automated tasks added as cron jobs) perform better if executed from the command line. It is possible to initialise the entire working environment (classes, libraries, etc.) by running index.php from the command line. The first argument appended need to be the name of the file in `/core/sources` to be executed.
+
+### Example
+If you need a DB maintenance task to be executed every hour you can create a `/core/sources/dbmaintenance.php` with all the required code. Any custom class defined in `/core/classes` or imported using composer, as well as all the configuration constants and variables defined in `/settings.php` will be available to that file when launched with the command:
+
+`$ php /path_to_your_web_root/index.php dbmaintenance`
 
 ## Sources
 Your application's source file must be stored in the ./core/sources directory or in any subdirectory created under it.
