@@ -140,6 +140,10 @@ SOFTWARE.
 
 ## Change Log
 
+### Nov, 2017
+Now you can run your boilerplated-scripts from command line.
+Improved MySql connection functionalities.
+
 ### Sept, 2016
 Added support for Composer.
 
