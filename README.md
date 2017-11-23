@@ -102,6 +102,11 @@ You wrote a class to manage Users, this is the folder structure:
 - index.php
 - settings.php
 ```
+
+## Debugging
+
+`error_reporting(0);` is the default configuration, this means no errors are shown. If you need to debug your app, just create an empty `/.debug` file, this will set `error_reporting(E_ALL);`. Once finished debugging, just delete the file to get back to your normal operations.
+
 ## License
 
 The MIT License (MIT)

@@ -1,5 +1,7 @@
 <?php
-	error_reporting(E_ALL);
+	$show_error = 0;
+	if ( file_exists("./.debug") ) $show_error = E_ALL;
+	error_reporting( $show_error );
  	session_start();
 	
 	$settings = './settings.php';
