@@ -20,7 +20,7 @@ Open ./settings.php and edit where required. Connection to MySql is managed in t
 
 ## Requirements
 
-- PHP 5.3.3-7 (this is the only version of PHP tested at the moment)
+- PHP 5.3+, PHP 7 (this is the only version of PHP tested at the moment)
 - PHP configuration without safe_mode enabled
 - MySql 5.1.73-1 (this is the only version of MySql tested at the moment - not required by the boilerplate itself)
 
